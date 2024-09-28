@@ -2,6 +2,8 @@ import React from 'react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './components/Home'
+import RegisterPage from './components/RegisterPage'
+import LoginPage from './components/LoginPage'
 import './App.css'
 
 function App() {
@@ -10,7 +12,9 @@ function App() {
   return (
     <div>
       <Navbar/>
-      <Home/>
+      {/* <Home/> */}
+      <RegisterPage/>
+      <LoginPage/>
       <Footer/>
       
     </div>
@@ -18,3 +22,4 @@ function App() {
 }
 
 export default App
+ 

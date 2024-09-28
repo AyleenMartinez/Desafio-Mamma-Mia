@@ -8,7 +8,7 @@ const Header = ({tittle, description }) =>{
             <p>{description}</p>
             <hr/>
         </header>
-    );
+    ); 
 };
 
 export default Header;
