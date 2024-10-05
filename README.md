@@ -1,3 +1,14 @@
+Hito 1 Pizzeria Mamma Mia - Introducción a React /////
+Hito 2 Pizzeria Mamma Mia - Estados de los componentes y eventos
+
+
+
+
+
+
+
+
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
