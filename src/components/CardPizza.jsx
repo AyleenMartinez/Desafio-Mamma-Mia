@@ -3,11 +3,18 @@ import "../assets/css/CardPizza.css";
 
 const CardPizza = ({ name, price, ingredients, img }) => {
   return (
+   
     <div className="card">
       <img src={img} />
       <h2>{name}</h2>
+      <p>Precio: ${price}</p>
+
       <div className="ingredients">
-        <span>{ingredients.map((element) => "🍕 " + element)}</span>
+      <ul>
+        {ingredients.map((ingredient, i) => (
+          <li key={i}>🍕{ingredient}🍕</li>
+        ))}
+      </ul>
       </div>
 
       <div className="price-btn">

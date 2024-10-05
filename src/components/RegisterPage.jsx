@@ -30,7 +30,7 @@ const RegisterPage = () => {
       setError("Las contraseñas no coinciden");
       return;
     }
-
+    
     setSuccess("Registro exitoso");
   };
 

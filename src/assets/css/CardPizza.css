@@ -3,9 +3,10 @@
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap; 
-    padding: 20px;
+    padding: 50px;
     border: 5px #fff2cc solid;
-    margin: 15px;
+    margin: 5px;
+    
   }
   
   .card {
@@ -15,10 +16,11 @@
     width: 300px; 
     background-color: white;
     text-align: center;
-  }
+    margin-bottom: 10px;
 
-  .card img{
-    border-radius: 10px;
+    img{
+      border-radius: 10px;
+    }
   }
 
   h2{
@@ -39,10 +41,14 @@
 
   .ingredients{
     border: 1px solid #ddd;
-    height: 70px;
-    padding: 10px;
+    padding-top: 10px;
+
+   ul{
+      list-style: none;
+    }
   }
 
+  
 .btn{
     display: flex;
     flex-wrap: wrap;
@@ -58,4 +64,40 @@
   .price{
     font-size: x-large;
     font-weight: 600;
+  }
+
+  .pizza-container-cart{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap; 
+    padding: 20px;
+    border: 5px #fff2cc solid;
+    margin: 10px;
+  }
+
+  .card-cart{
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 300px; 
+    background-color: white;
+    text-align: center;
+    margin-bottom: 10px;
+
+    img{
+      border-radius: 10px;
+      width: 250px;
+    }
+  }
+
+  .cart-tittle{
+    display: flex;
+    justify-content: center;
+  }
+
+  .cart-total{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
   }
