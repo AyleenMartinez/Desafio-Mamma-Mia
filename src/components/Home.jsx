@@ -2,9 +2,21 @@ import React from "react";
 import Header from "./Header";
 import CardPizza from "./CardPizza";
 import "../assets/css/CardPizza.css";
-import { pizzas } from "../assets/js/pizzas";
+import { useState, useEffect } from "react";
 
 const Home = () => {
+  const [pizzas, setPizzas] = useState([]);
+
+  useEffect(() => {
+    consultarApi();
+  }, []);
+
+  const consultarApi = async () => {
+    const url = "http://localhost:5000/api/pizzas";
+    const response = await fetch(url);
+    const data = await response.json();
+    setPizzas(data);
+  };
   return (
     <div>
       <Header
@@ -12,7 +24,7 @@ const Home = () => {
         description="¡Tenemos las mejores pizzas que podrás encontrar!"
       />
 
-      <div className="pizza-container">
+      <div className="pizzas-container">
         {pizzas.map((pizza) => (
           <CardPizza
             key={pizza.id}

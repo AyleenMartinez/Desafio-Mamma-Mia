@@ -1,0 +1,29 @@
+.card-pizza {
+    border: 1px solid #a3a3a3;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    margin-bottom: 10px;
+    flex-direction: row;
+    gap: 10px;
+    display: flex;
+    list-style: none;
+
+img{
+      border-radius: 10px;
+      width: 250px;
+      height: 250px;
+      margin-top: 5px;
+      margin-left: 10px;
+      margin-bottom: 5px;
+    }
+  }
+
+  .price-btn-pizza{
+    display: flex;
+    gap: 10px;
+  }
+
+
+.ingredients-pizza{
+    display: flex;
+}

@@ -44,17 +44,22 @@ const Cart = () => {
           <div key={i} className="card-cart">
             <img src={pizza.img} alt={`${pizza.name} pizza`} />
             <h3>{pizza.name}</h3>
-            <p>Precio: ${pizza.price}</p>
+            <p>Precio: ${pizza.price.toLocaleString()}</p>
             <p>Cantidad: {pizza.count}</p>
-
-            <button onClick={() => quitar(pizza)}>-</button>
-            <button onClick={() => agregar(pizza)}>+</button>
+            <div className="btn">
+              <button className="btn-carrito" onClick={() => quitar(pizza)}>
+                -
+              </button>
+              <button className="btn-carrito" onClick={() => agregar(pizza)}>
+                +
+              </button>
+            </div>
           </div>
         ))}
       </div>
       <div className="cart-total">
-        <h2>Total: ${calcularTotal()}</h2>
-        <button>Pagar</button>
+        <h2>Total: ${calcularTotal().toLocaleString()}</h2>
+        <button className="btn-total">Pagar</button>
       </div>
     </div>
   );
