@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import '../assets/css/RegisterPage.css';
+import '../css/RegisterPage.css';
 
 const RegisterPage = () => {
 

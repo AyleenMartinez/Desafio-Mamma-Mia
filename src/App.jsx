@@ -1,11 +1,12 @@
 import React from 'react'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
-// import Cart from './components/Cart'
-// import Home from './components/Home'
-import Pizza from './components/Pizza'
-// import RegisterPage from './components/RegisterPage'
-// import LoginPage from './components/LoginPage'
+import Cart from './assets/pages/Cart'
+import Home from './assets/pages/Home'
+import Pizza from './assets/pages/Pizza'
+import RegisterPage from './assets/pages/RegisterPage'
+import LoginPage from './assets/pages/LoginPage'
 import './App.css'
 
 function App() {
@@ -14,10 +15,10 @@ function App() {
   return (
     <div>
       <Navbar/>
-      {/* <Home/> 
+      <Home/> 
       <RegisterPage/>
       <LoginPage/>
-      <Cart/> */}
+      <Cart/>
       <Pizza/>
       <Footer/>
       
