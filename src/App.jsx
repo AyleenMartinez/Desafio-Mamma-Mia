@@ -13,18 +13,17 @@ function App() {
   
 
   return (
-    <div>
-      <Navbar/>
-      <Home/> 
-      <RegisterPage/>
-      <LoginPage/>
-      <Cart/>
-      <Pizza/>
-      <Footer/>
-      
-    </div>
+    <Router>
+      <Routes>
+        <Route path='/' element={<Home/>}/>
+        <Route path='/register' element={<RegisterPage/>}/>
+        <Route path='/login' element={<LoginPage/>}/>
+        <Route path='/pizza/001' element={<Pizza/>}/>
+        <Route path='/cart' element={<Cart/>}/>
+      </Routes>
+    </Router>
   )
-}
+};
 
 export default App
  
