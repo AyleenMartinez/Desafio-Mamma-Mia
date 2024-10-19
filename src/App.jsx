@@ -4,6 +4,7 @@ import {
   Route,
   Routes,
   Navigate,
+  useLocation,
 } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -17,9 +18,14 @@ import Profile from "./pages/ProfilePage.jsx";
 import "./App.css";
 
 function App() {
+const location = useLocation();
+
+const hideNavbarFooter = location.pathname === "/404";
+
   return (
     <div>
-      <Navbar />
+      {!hideNavbarFooter && <Navbar/>}
+      
 
       <Routes>
         <Route path="/" element={<Home />} />
@@ -32,7 +38,7 @@ function App() {
         <Route path="*" element={<Navigate to="404" />} />
       </Routes>
 
-      <Footer />
+      {!hideNavbarFooter && <Footer />}
     </div>
   );
 }
