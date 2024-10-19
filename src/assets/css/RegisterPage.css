@@ -40,3 +40,8 @@
     background-color: #0056b3; 
   }
   
+  .tittle-register{
+    display: flex;
+    justify-content: center;
+    padding-top: 30px;
+  }

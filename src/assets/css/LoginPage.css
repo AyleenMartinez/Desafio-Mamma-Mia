@@ -39,4 +39,10 @@
   .loginPage button:hover {
     background-color: #0056b3; 
   }
+
+  .tittle-login{
+    display: flex;
+    justify-content: center;
+    padding-top: 30px;
+  }
   
