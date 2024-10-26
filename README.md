@@ -1,6 +1,9 @@
 Hito 1 Pizzeria Mamma Mia - Introducción a React /////
 Hito 2 Pizzeria Mamma Mia - Estados de los componentes y eventos ///////
 Hito 3 Pizzeria Mamma Mía - Renderizacion dinamica de componentes ////////
+Hito 4 Pizzeria Mamma Mia - Consumo de APIs con React ////////
+Hito 5 Pizzeria Mamma Mia - React Router 1 ///////
+Hito 6 Pizzeria Mamma Mia - Context /////
 
 
 
