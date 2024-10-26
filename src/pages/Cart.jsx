@@ -1,45 +1,14 @@
-import React, { useState } from "react";
-import { pizzaCart } from "../assets/js/pizzas";
+import React, { useContext } from "react";
+import { CartContext } from "../context/CartContext";
+import { Link } from "react-router-dom";
 import "../assets/css/CardPizza.css";
 
-
 const Cart = () => {
-  const [cart, setCart] = useState(pizzaCart);
-
-  const agregar = (pizza) => {
-    const listaPizzas = [...cart];
-    const index = listaPizzas.findIndex((el) => el.id === pizza.id);
-    listaPizzas[index].count += 1;
-    setCart(listaPizzas);
-  };
-
-  const quitar = (pizza) => {
-    const listaPizzas = [...cart];
-    const index = listaPizzas.findIndex((el) => el.id === pizza.id);
-    listaPizzas[index].count -= 1;
-    if (listaPizzas[index].count <= 0) {
-      eliminarPizza(pizza);
-    } else {
-      setCart(listaPizzas);
-    }
-  };
-
-  const eliminarPizza = (pizza) => {
-    const pizzasFiltradas = cart.filter((el) => el.id !== pizza.id);
-    setCart(pizzasFiltradas);
-  };
-
-  const calcularTotal = () => {
-    let total = 0;
-    for (let index = 0; index < cart.length; index++) {
-      total += cart[index].price * cart[index].count;
-    }
-    return total;
-  };
+  const { cart, agregar, quitar, calcularTotal } = useContext(CartContext);
 
   return (
     <div>
-      <h2 className="cart-tittle">Carrito 🛒</h2>
+      <h2 className="cart-tittle">Carrito</h2>
       <div className="pizza-container-cart">
         {cart.map((pizza, i) => (
           <div key={i} className="card-cart">
@@ -61,6 +30,9 @@ const Cart = () => {
       <div className="cart-total">
         <h2>Total: ${calcularTotal().toLocaleString()}</h2>
         <button className="btn-total">Pagar</button>
+        <Link to="/">
+          <button>Volver al inicio</button>
+        </Link>
       </div>
     </div>
   );

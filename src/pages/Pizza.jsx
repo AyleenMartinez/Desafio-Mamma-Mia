@@ -1,23 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "../assets/css/Pizza.css";
+import { CartContext } from "../context/CartContext";
+import { PizzaContext } from "../context/PizzaContext";
 
 const Pizza = () => {
+  const { agregar } = useContext(CartContext);
+  const { pizzas } = useContext(PizzaContext);
   const [pizza, setPizza] = useState(null);
 
   useEffect(() => {
-    consultarPizza();
-  }, []);
-
-  const consultarPizza = async () => {
-    try {
-      const url = "http://localhost:5000/api/pizzas/p001";
-      const response = await fetch(url);
-      const data = await response.json();
-      setPizza(data);
-    } catch (error) {
-      alert("Error")
-    }
-  };
+    const pizzaSeleccionada = pizza.find(p => p.id === "p0001");
+    setPizza(pizzaSeleccionada);
+  }, [pizzas]);
 
   return (
     pizza && (
@@ -27,14 +21,14 @@ const Pizza = () => {
           <h2>{pizza.name}</h2>
           <p className="ingredients-pizza">
             {pizza.ingredients.map((ingredient, i) => (
-              <li key={i}>🍕{ingredient}</li>
+              <li key={i}>{ingredient}</li>
             ))}
           </p>
           <p>{pizza.desc}</p>
           <div className="price-btn-pizza">
             <p className="price">Precio: ${pizza.price.toLocaleString()}</p>
             <div className="btn">
-              <button className="botones">Añadir 🛒</button>
+              <button className="botones" onClick={()=> agregar(pizza)}>Añadir</button>
             </div>
           </div>
         </div>

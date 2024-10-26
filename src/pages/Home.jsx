@@ -1,29 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import Header from "../components/Header";
 import CardPizza from "../components/CardPizza";
 import "../assets/css/CardPizza.css";
-import { useState, useEffect } from "react";
+import { CartContext } from "../context/CartContext";
+import {PizzaContext} from "../context/PizzaContext";
 
 const Home = () => {
-  const [pizzas, setPizzas] = useState([]);
+  const { agregar } = useContext(CartContext);
+  const { pizzas } = useContext(PizzaContext);
 
-  useEffect(() => {
-    consultarApi();
-  }, []);
-
-  const consultarApi = async () => {
-    const url = "http://localhost:5000/api/pizzas";
-    const response = await fetch(url);
-    const data = await response.json();
-    setPizzas(data);
-  };
   return (
     <div>
       <Header
         tittle="¡Pizzería Mamma Mía!"
         description="¡Tenemos las mejores pizzas que podrás encontrar!"
       />
-
       <div className="pizzas-container">
         {pizzas.map((pizza) => (
           <CardPizza
@@ -32,6 +23,7 @@ const Home = () => {
             price={pizza.price}
             ingredients={pizza.ingredients}
             img={pizza.img}
+            agregar={() => agregar(pizza)}
           />
         ))}
       </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import "../assets/css/CardPizza.css";
 
-const CardPizza = ({ name, price, ingredients, img, desc }) => {
+const CardPizza = ({ name, price, ingredients, img, desc, agregar }) => {  
   return (
     <div className="card">
       <img src={img} alt={name} />
@@ -21,7 +21,7 @@ const CardPizza = ({ name, price, ingredients, img, desc }) => {
           <p className="price">Precio: ${price.toLocaleString()}</p>
           <div className="btn">
             <button className="botones">Ver más 👀</button>
-            <button className="botones">Añadir 🛒</button>
+            <button className="botones" onClick={agregar}>Añadir 🛒</button>
           </div>
         </div>
       </div>

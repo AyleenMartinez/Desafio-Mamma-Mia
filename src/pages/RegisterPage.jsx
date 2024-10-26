@@ -1,22 +1,17 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import "../assets/css/RegisterPage.css";
 
 const RegisterPage = () => {
   const [email, setEmail] = useState("");
   const [contraseña, setContraseña] = useState("");
   const [confirmarContraseña, setConfirmarContraseña] = useState("");
-
   const [error, setError] = useState("");
-
   const [success, setSuccess] = useState("");
 
   const validarDatos = (e) => {
     e.preventDefault();
-
     setError("");
     setSuccess("");
-
     if (!email.trim() || !contraseña.trim() || !confirmarContraseña.trim()) {
       setError("Todos los campos son obligatorios");
       return;
@@ -29,7 +24,6 @@ const RegisterPage = () => {
       setError("Las contraseñas no coinciden");
       return;
     }
-
     setSuccess("Registro exitoso");
   };
 
@@ -39,9 +33,7 @@ const RegisterPage = () => {
         <h2 className="tittle-register">Registrarse</h2>
         <form className="registerPage" onSubmit={validarDatos}>
           {error ? <p style={{ color: "red" }}>{error}</p> : null}
-
           {success ? <p style={{ color: "green" }}>{success}</p> : null}
-
           <div className="form-group">
             <label>Email</label>
             <input
@@ -72,9 +64,7 @@ const RegisterPage = () => {
               value={confirmarContraseña}
             />
           </div>
-          <button type="submit" className="btn btn-primary">
-            Enviar
-          </button>
+          <button type="submit" className="btn btn-primary">Enviar</button>
         </form>
       </div>
     </>
