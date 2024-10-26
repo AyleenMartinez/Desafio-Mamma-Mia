@@ -4,7 +4,7 @@ import {
   Route,
   Routes,
   Navigate,
-  useLocation
+  useLocation,
 } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -17,7 +17,6 @@ import NotFound from "./pages/NotFound";
 import Profile from "./pages/ProfilePage.jsx";
 import CartProvider from "./context/CartContext.jsx";
 import PizzaProvider from "./context/PizzaContext.jsx";
-
 import "./App.css";
 
 function App() {
@@ -27,21 +26,26 @@ function App() {
   return (
     <CartProvider>
       <PizzaProvider>
-        {!hideNavbarFooter && <Navbar />}
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/pizza/p001" element={<Pizza />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/404" element={<NotFound />} />
-          <Route path="*" element={<Navigate to="/404" />} />
-        </Routes>
-        {!hideNavbarFooter && <Footer />}
+        <div className="app-container">
+          {!hideNavbarFooter && <Navbar />}
+          <div className="main-content">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/register" element={<RegisterPage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/pizza/p001" element={<Pizza />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/footer" element={<Footer />} />
+              <Route path="/404" element={<NotFound />} />
+              <Route path="*" element={<Navigate to="/404" />} />
+            </Routes>
+          </div>
+          {!hideNavbarFooter && <Footer />}
+        </div>
       </PizzaProvider>
     </CartProvider>
   );
-};
+}
 
 export default App;
