@@ -24,6 +24,7 @@ const Home = () => {
             ingredients={pizza.ingredients}
             img={pizza.img}
             agregar={() => agregar(pizza)}
+            id={pizza.id}
           />
         ))}
       </div>

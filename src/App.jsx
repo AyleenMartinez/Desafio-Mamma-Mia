@@ -17,6 +17,7 @@ import NotFound from "./pages/NotFound";
 import Profile from "./pages/ProfilePage.jsx";
 import CartProvider from "./context/CartContext.jsx";
 import PizzaProvider from "./context/PizzaContext.jsx";
+import UserProvider from "./context/UserContext.jsx";
 import "./App.css";
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
   return (
     <CartProvider>
       <PizzaProvider>
+        <UserProvider>
         <div className="app-container">
           {!hideNavbarFooter && <Navbar />}
           <div className="main-content">
@@ -33,7 +35,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/register" element={<RegisterPage />} />
               <Route path="/login" element={<LoginPage />} />
-              <Route path="/pizza/p001" element={<Pizza />} />
+              <Route path="/pizza/:id" element={<Pizza />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/footer" element={<Footer />} />
@@ -43,6 +45,7 @@ function App() {
           </div>
           {!hideNavbarFooter && <Footer />}
         </div>
+        </UserProvider>
       </PizzaProvider>
     </CartProvider>
   );

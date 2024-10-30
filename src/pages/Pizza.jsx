@@ -2,16 +2,28 @@ import React, { useState, useEffect, useContext } from "react";
 import "../assets/css/Pizza.css";
 import { CartContext } from "../context/CartContext";
 import { PizzaContext } from "../context/PizzaContext";
+import { useParams } from "react-router-dom";
 
 const Pizza = () => {
   const { agregar } = useContext(CartContext);
   const { pizzas } = useContext(PizzaContext);
   const [pizza, setPizza] = useState(null);
+  const { id } = useParams()
 
   useEffect(() => {
-    const pizzaSeleccionada = pizza.find(p => p.id === "p0001");
-    setPizza(pizzaSeleccionada);
+    consultarApi();
   }, [pizzas]);
+
+  const consultarApi = async () => {
+    try {
+      const url = "http://localhost:5000/api/pizzas/" + id;
+      const response = await fetch(url);
+      const data = await response.json();
+      setPizza(data);
+    } catch (error) {
+      console.error("Error fetching pizzas:", error);
+    }
+  };
 
   return (
     pizza && (
@@ -19,11 +31,13 @@ const Pizza = () => {
         <img src={pizza.img} alt={`${pizza.name} pizza`} />
         <div className="card-info">
           <h2>{pizza.name}</h2>
-          <p className="ingredients-pizza">
+          <div className="ingredients-pizza">
+          <ul>
             {pizza.ingredients.map((ingredient, i) => (
-              <li key={i}>{ingredient}</li>
+              <li key={i}>🍕{ingredient}🍕</li>
             ))}
-          </p>
+          </ul>
+        </div>
           <p>{pizza.desc}</p>
           <div className="price-btn-pizza">
             <p className="price">Precio: ${pizza.price.toLocaleString()}</p>
