@@ -2,9 +2,12 @@ import React, { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 import { Link } from "react-router-dom";
 import "../assets/css/CardPizza.css";
+import { UserContext } from "../context/UserContext";
 
 const Cart = () => {
   const { cart, agregar, quitar, calcularTotal } = useContext(CartContext);
+  const { token } = useContext(UserContext);
+
 
   return (
     <div>
@@ -29,7 +32,7 @@ const Cart = () => {
       </div>
       <div className="cart-total">
         <h2>Total: ${calcularTotal().toLocaleString()}</h2>
-        <button className="btn-total">Pagar</button>
+        <button disabled={!token} className="btn-total">Pagar</button>
         <Link to="/">
           <button>Volver al inicio</button>
         </Link>
