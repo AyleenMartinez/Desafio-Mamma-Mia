@@ -8,7 +8,6 @@ const Cart = () => {
   const { cart, agregar, quitar, calcularTotal } = useContext(CartContext);
   const { token } = useContext(UserContext);
 
-
   return (
     <div>
       <h2 className="cart-tittle">Carrito</h2>
@@ -32,7 +31,23 @@ const Cart = () => {
       </div>
       <div className="cart-total">
         <h2>Total: ${calcularTotal().toLocaleString()}</h2>
-        <button disabled={!token} className="btn-total">Pagar</button>
+        <button
+          disabled={!token}
+          className="btn-total"
+          style={{
+            backgroundColor: token ? "" : "gray",
+            cursor: token ? "pointer" : "not-allowed",
+          }}
+        >
+          Pagar
+        </button>
+
+        {!token && (
+          <p style={{ color: "red" }}>
+            Inicia sesión para completar la compra.
+          </p>
+        )}
+
         <Link to="/">
           <button>Volver al inicio</button>
         </Link>

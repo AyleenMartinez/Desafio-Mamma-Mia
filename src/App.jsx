@@ -36,8 +36,8 @@ function App() {
           <div className="main-content">
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/register" element={!token ? <RegisterPage /> : <Navigate to="/" />} />
-              <Route path="/login" element={!token ? <LoginPage /> : <Navigate to="/" />} />
+              <Route path="/register" element={token ? <Navigate to="/"/> : <RegisterPage />} />
+              <Route path="/login" element={token ?  <Navigate to="/" /> : <LoginPage /> } />
               <Route path="/pizza/:id" element={<Pizza />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/profile" element={token ? <Profile /> : <Navigate to="/login" />} />
