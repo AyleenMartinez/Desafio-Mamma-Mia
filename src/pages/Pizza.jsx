@@ -12,7 +12,7 @@ const Pizza = () => {
 
   useEffect(() => {
     consultarApi();
-  }, [pizzas]);
+  }, [id]);
 
   const consultarApi = async () => {
     try {

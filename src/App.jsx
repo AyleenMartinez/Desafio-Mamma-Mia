@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -17,27 +17,30 @@ import NotFound from "./pages/NotFound";
 import Profile from "./pages/ProfilePage.jsx";
 import CartProvider from "./context/CartContext.jsx";
 import PizzaProvider from "./context/PizzaContext.jsx";
-import UserProvider from "./context/UserContext.jsx";
+import { UserContext } from "./context/UserContext.jsx";
 import "./App.css";
 
 function App() {
+  const { token } = useContext(UserContext);
   const location = useLocation();
   const hideNavbarFooter = location.pathname === "/404";
 
   return (
+
+
+
     <CartProvider>
       <PizzaProvider>
-        <UserProvider>
         <div className="app-container">
           {!hideNavbarFooter && <Navbar />}
           <div className="main-content">
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/register" element={<RegisterPage />} />
-              <Route path="/login" element={<LoginPage />} />
+              <Route path="/register" element={!token ? <RegisterPage /> : <Navigate to="/" />} />
+              <Route path="/login" element={!token ? <LoginPage /> : <Navigate to="/" />} />
               <Route path="/pizza/:id" element={<Pizza />} />
               <Route path="/cart" element={<Cart />} />
-              <Route path="/profile" element={<Profile />} />
+              <Route path="/profile" element={token ? <Profile /> : <Navigate to="/login" />} />
               <Route path="/footer" element={<Footer />} />
               <Route path="/404" element={<NotFound />} />
               <Route path="*" element={<Navigate to="/404" />} />
@@ -45,7 +48,6 @@ function App() {
           </div>
           {!hideNavbarFooter && <Footer />}
         </div>
-        </UserProvider>
       </PizzaProvider>
     </CartProvider>
   );
