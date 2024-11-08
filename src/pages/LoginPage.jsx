@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
 import "../assets/css/LoginPage.css";
+import { UserContext } from "../context/UserContext";
 
 const LoginPage = () => {
+  
+  const { login } = useContext(UserContext);
+
   const [email, setEmail] = useState("");
   const [contraseña, setContraseña] = useState("");
   const [error, setError] = useState("");
@@ -22,7 +26,12 @@ const LoginPage = () => {
       setError("La contraseña debe tener al menos 6 caracteres");
       return;
     }
-    setSuccess("Inicio de sesión exitoso");
+    try {
+      login(email, contraseña);
+      setSuccess("Inicio de sesión exitoso");
+    } catch (error) {
+      setError(error);
+    }
   };
 
   return (
