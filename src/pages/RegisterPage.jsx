@@ -1,17 +1,21 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "../assets/css/RegisterPage.css";
+import { UserContext } from "../context/UserContext";
 
 const RegisterPage = () => {
+  const { register } = useContext(UserContext);
+
   const [email, setEmail] = useState("");
   const [contraseña, setContraseña] = useState("");
   const [confirmarContraseña, setConfirmarContraseña] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
-  const validarDatos = (e) => {
+  const validarDatos = async (e) => {
     e.preventDefault();
     setError("");
     setSuccess("");
+
     if (!email.trim() || !contraseña.trim() || !confirmarContraseña.trim()) {
       setError("Todos los campos son obligatorios");
       return;
@@ -24,7 +28,12 @@ const RegisterPage = () => {
       setError("Las contraseñas no coinciden");
       return;
     }
-    setSuccess("Registro exitoso");
+    try {
+      await register(email, contraseña);
+      setSuccess("Registro exitoso");
+    } catch (error) {
+      setError("Error en el registro. Intenta nuevamente");
+    };
   };
 
   return (

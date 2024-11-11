@@ -1,13 +1,15 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect, useContext } from "react";
 
 export const UserContext = createContext();
+
+export const useUser = () => useContext(UserContext);
 
 const UserProvider = ({ children }) => {
   const [token, setToken] = useState();
   const [email, setEmail] = useState();
 
   useEffect(() => {
-    setToken(true);
+    setToken(false);
   }, []);
 
   const logout = () => {
@@ -26,9 +28,13 @@ const UserProvider = ({ children }) => {
         password: clave,
       }),
     });
-    const data = await response.json();
-    setToken(data.token);
-    setEmail(data.email);
+    if (response.ok) {
+      const data = await response.json();
+      setToken(data.token);
+      setEmail(data.email);
+    } else {
+      throw new Error("Credenciales incorrectas");
+    }
   };
 
   const register = async (correo, clave) => {
@@ -60,7 +66,9 @@ const UserProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={{ token, logout, login, register, obtenerDatos }}>
+    <UserContext.Provider
+      value={{ token, email, logout, login, register, obtenerDatos }}
+    >
       {children}
     </UserContext.Provider>
   );

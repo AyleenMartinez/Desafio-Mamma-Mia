@@ -12,7 +12,7 @@ const LoginPage = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
-  const validarDatos = (e) => {
+  const validarDatos = async (e) => {
     e.preventDefault();
 
     setError("");
@@ -27,11 +27,12 @@ const LoginPage = () => {
       return;
     }
     try {
-      login(email, contraseña);
+      await login(email, contraseña);
       setSuccess("Inicio de sesión exitoso");
     } catch (error) {
-      setError(error);
-    }
+      console.log(error)
+      setError(error.message);
+    };
   };
 
   return (

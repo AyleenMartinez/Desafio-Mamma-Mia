@@ -1,15 +1,33 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { CartContext } from "../context/CartContext";
 import { Link } from "react-router-dom";
 import "../assets/css/CardPizza.css";
-import { UserContext } from "../context/UserContext";
+import { UserContext, useUser } from "../context/UserContext";
 
 const Cart = () => {
   const { cart, agregar, quitar, calcularTotal } = useContext(CartContext);
-  const { token } = useContext(UserContext);
+  const { token } = useUser();
+  const [success, setSuccess] = useState("");
+
+  const checkout = async () => {
+    const response = await fetch("http://localhost:5000/api/checkouts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+      body: JSON.stringify({
+        cart: cart,
+      }),
+    });
+    if (response.ok) {
+    setSuccess("Compra realizada con exito")
+    }
+  };
 
   return (
     <div>
+      <p style={{ color: "green" }}>{success}</p>
       <h2 className="cart-tittle">Carrito</h2>
       <div className="pizza-container-cart">
         {cart.map((pizza, i) => (
@@ -32,6 +50,7 @@ const Cart = () => {
       <div className="cart-total">
         <h2>Total: ${calcularTotal().toLocaleString()}</h2>
         <button
+          onClick={checkout}
           disabled={!token}
           className="btn-total"
           style={{
