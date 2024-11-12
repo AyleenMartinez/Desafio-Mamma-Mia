@@ -27,7 +27,6 @@ const Cart = () => {
 
   return (
     <div>
-      <p style={{ color: "green" }}>{success}</p>
       <h2 className="cart-tittle">Carrito</h2>
       <div className="pizza-container-cart">
         {cart.map((pizza, i) => (
@@ -60,6 +59,7 @@ const Cart = () => {
         >
           Pagar
         </button>
+        <p style={{ color: "green", fontSize: "24px"}}>{success}</p>
 
         {!token && (
           <p style={{ color: "red" }}>

@@ -26,9 +26,6 @@ function App() {
   const hideNavbarFooter = location.pathname === "/404";
 
   return (
-
-
-
     <CartProvider>
       <PizzaProvider>
         <div className="app-container">
@@ -36,11 +33,20 @@ function App() {
           <div className="main-content">
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/register" element={token ? <Navigate to="/"/> : <RegisterPage />} />
-              <Route path="/login" element={token ?  <Navigate to="/" /> : <LoginPage /> } />
+              <Route
+                path="/register"
+                element={token ? <Navigate to="/" /> : <RegisterPage />}
+              />
+              <Route
+                path="/login"
+                element={token ? <Navigate to="/" /> : <LoginPage />}
+              />
               <Route path="/pizza/:id" element={<Pizza />} />
               <Route path="/cart" element={<Cart />} />
-              <Route path="/profile" element={token ? <Profile /> : <Navigate to="/login" />} />
+              <Route
+                path="/profile"
+                element={token ? <Profile /> : <Navigate to="/login" />}
+              />
               <Route path="/footer" element={<Footer />} />
               <Route path="/404" element={<NotFound />} />
               <Route path="*" element={<Navigate to="/404" />} />
